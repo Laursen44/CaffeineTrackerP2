@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CaffeineTrackerP2</string>
+    <string name="main_message">Write text here please dave.</string>
+    <string name="button_send">send.</string>
+    <string name="change_activity">change.</string>
+
+    <string name="title_activity_logging">LoggingActivity</string>
+
+    <string name="title_activity_statistic">StatisticActivity</string>
+
+    <string name="title_activity_calendar">CalendarActivity</string>
+
+</resources>
