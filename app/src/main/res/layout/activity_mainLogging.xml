@@ -38,11 +38,11 @@
             android:layout_marginRight="170dp" />
 
         <TextView
-            android:id="@+id/calendar_textview"
+            android:id="@+id/logging_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/title_activity_calendar"
+            android:text="@string/title_activity_MainLogging"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -55,3 +55,4 @@
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
+
