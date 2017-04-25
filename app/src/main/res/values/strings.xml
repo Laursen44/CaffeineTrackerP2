@@ -10,15 +10,24 @@
 
     <string name="title_activity_calendar">CALENDAR</string>
 
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="caffeine_chooser">
+        <item>Coffee black</item>
+        <item>Cola</item>
+        <item>Pepsi</item>
+        <item>Monster Energy</item>
+        <item>Red bull</item>
+        <item>Mocca</item>
+        <item>Coffee instant</item>
+        <item>Thomas ass Coffee</item>
     </string-array>
 
+    <string-array name="caffeine_amount">
+        <item>25ml</item>
+        <item>200ml</item>
+        <item>250ml</item>
+        <item>330ml</item>
+        <item>500ml</item>
+        <item>660ml</item>
+        <item>1000ml</item>
+    </string-array>
 </resources>

@@ -4,18 +4,26 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class MainLoggingActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    private Spinner caffeineSubstanceChooser;
+    private Spinner caffeineAmountChooser;
+
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainlogging);
 
-
+        addItemsToCaffeineSubstanceChooserSpinner();
+        addItemsToCaffeineAmountChooserSpinner();
+        addListenerToCaffeineSubstanceChooserSpinner();
+        addListenerToCaffeineAmountChooserSpinner();
     }
 
-    @Override
     protected void onPause() {
         super.onPause();
     }
@@ -30,5 +38,69 @@ public class MainLoggingActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(MainLoggingActivity.this, StatisticActivity.class);
         startActivity(intent);
+    }
+
+    void addItemsToCaffeineSubstanceChooserSpinner()
+    {
+        caffeineSubstanceChooser = (Spinner) findViewById(R.id.caffeine_source_choose);
+
+        ArrayAdapter<CharSequence> caffeineSubstanceChooserAdapter =
+                ArrayAdapter.createFromResource(this, R.array.caffeine_chooser,
+                        android.R.layout.simple_spinner_item);
+
+        caffeineSubstanceChooserAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
+
+        caffeineSubstanceChooser.setAdapter(caffeineSubstanceChooserAdapter);
+    }
+
+    void addItemsToCaffeineAmountChooserSpinner()
+    {
+        caffeineAmountChooser = (Spinner) findViewById(R.id.caffeine_amount_choose);
+
+        ArrayAdapter<CharSequence> caffeineAmountChooserAdapter =
+                ArrayAdapter.createFromResource(this, R.array.caffeine_amount,
+                        android.R.layout.simple_spinner_item);
+
+        caffeineAmountChooserAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
+
+        caffeineAmountChooser.setAdapter(caffeineAmountChooserAdapter);
+    }
+
+    void addListenerToCaffeineSubstanceChooserSpinner()
+    {
+        caffeineSubstanceChooser = (Spinner) findViewById(R.id.caffeine_source_choose);
+
+        caffeineSubstanceChooser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
+            {
+                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
+    }
+
+    void addListenerToCaffeineAmountChooserSpinner()
+    {
+        caffeineAmountChooser = (Spinner) findViewById(R.id.caffeine_amount_choose);
+
+        caffeineAmountChooser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
+            {
+                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
     }
 }
