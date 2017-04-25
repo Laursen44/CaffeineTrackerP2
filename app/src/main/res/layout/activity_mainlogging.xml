@@ -12,7 +12,7 @@
 
         <ImageButton
             android:id="@+id/change_activity_left"
-            android:onClick="changeActivityLEFT"
+            android:onClick="changeActivityLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_media_rew"
@@ -25,7 +25,7 @@
 
         <ImageButton
             android:id="@+id/change_activity_right"
-            android:onClick="changeActivityRIGHT"
+            android:onClick="changeActivityRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_media_ff"
@@ -35,7 +35,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="4dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="170dp" />
+            android:layout_marginRight="16dp" />
 
         <TextView
             android:id="@+id/logging_text_view"
@@ -51,6 +51,13 @@
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="91dp"
+            android:layout_height="82dp"
+            tools:layout_editor_absoluteX="72dp"
+            tools:layout_editor_absoluteY="469dp" />
 
     </android.support.constraint.ConstraintLayout>
 

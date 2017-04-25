@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainLoggingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mainLogging);
+        setContentView(R.layout.activity_mainlogging);
+
+
     }
 
     @Override
@@ -20,13 +20,13 @@ public class MainLoggingActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    public void changeActivityLEFT(View view)
+    public void changeActivityLeft(View view)
     {
         Intent intent = new Intent(MainLoggingActivity.this, CalendarActivity.class);
         startActivity(intent);
     }
 
-    public void changeActivityRIGHT(View view)
+    public void changeActivityRight(View view)
     {
         Intent intent = new Intent(MainLoggingActivity.this, StatisticActivity.class);
         startActivity(intent);
