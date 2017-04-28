@@ -6,29 +6,29 @@ import android.os.Bundle;
 
 import android.view.View;
 
-public class CalendarActivity extends AppCompatActivity {
+public class LibraryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_library);
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_library);
     }
 
     public void changeActivityLEFT(View view)
     {
-        Intent intent = new Intent(CalendarActivity.this, StatisticActivity.class);
+        Intent intent = new Intent(LibraryActivity.this, StatisticActivity.class);
         startActivity(intent);
     }
 
     public void changeActivityRIGHT(View view)
     {
-        Intent intent = new Intent(CalendarActivity.this, MainLoggingActivity.class);
+        Intent intent = new Intent(LibraryActivity.this, MainLoggingActivity.class);
         startActivity(intent);
     }
 }

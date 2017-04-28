@@ -30,13 +30,19 @@ public class MainLoggingActivity extends AppCompatActivity {
 
     public void changeActivityLeft(View view)
     {
-        Intent intent = new Intent(MainLoggingActivity.this, CalendarActivity.class);
+        Intent intent = new Intent(MainLoggingActivity.this, StatisticActivity.class);
         startActivity(intent);
     }
 
     public void changeActivityRight(View view)
     {
         Intent intent = new Intent(MainLoggingActivity.this, StatisticActivity.class);
+        startActivity(intent);
+    }
+
+    public void libraryActivity(View view)
+    {
+        Intent intent = new Intent(MainLoggingActivity.this, LibraryActivity.class);
         startActivity(intent);
     }
 

@@ -19,9 +19,9 @@
             android:label="@string/title_activity_statistic"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".CalendarActivity"
+            android:name=".LibraryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_calendar"
+            android:label="@string/title_activity_library"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

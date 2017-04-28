@@ -5,10 +5,9 @@
     <string name="change_activity">change.</string>
 
     <string name="title_activity_MainLogging">LOGGING</string>
-
     <string name="title_activity_statistic">STATISTIC</string>
-
-    <string name="title_activity_calendar">CALENDAR</string>
+    <string name="title_activity_library">LIBRARY</string>
+    <string name="today">TODAY</string>
 
     <string-array name="caffeine_chooser">
         <item>Coffee black</item>
