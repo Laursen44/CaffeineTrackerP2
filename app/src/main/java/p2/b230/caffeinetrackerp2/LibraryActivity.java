@@ -20,13 +20,12 @@ public class LibraryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_library);
     }
 
-    public void changeActivityLEFT(View view)
+    public void makeCostum(View view)
     {
-        Intent intent = new Intent(LibraryActivity.this, StatisticActivity.class);
-        startActivity(intent);
+
     }
 
-    public void changeActivityRIGHT(View view)
+    public void backToLogging(View view)
     {
         Intent intent = new Intent(LibraryActivity.this, MainLoggingActivity.class);
         startActivity(intent);
