@@ -29,4 +29,48 @@
         <item>660ml</item>
         <item>1000ml</item>
     </string-array>
+
+    <string-array name="favorites">
+    </string-array>
+
+    <string-array name="Soda">
+        <item>Coca Cola</item>
+        <item>Faxe Kondi</item>
+        <item>Fanta</item>
+        <item>Sprite</item>
+        <item>Pepsi</item>
+    </string-array>
+
+    <string-array name="Coffee">
+        <item>Black</item>
+        <item>Instant 2 tsp</item>
+        <item>Espresso</item>
+        <item>Cappuccino</item>
+        <item>Macchiato</item>
+    </string-array>
+
+    <string-array name="Tea">
+        <item>Green</item>
+        <item>Black</item>
+        <item>Light</item>
+        <item>Cammellia</item>
+        <item>Chamomile</item>
+    </string-array>
+
+    <string-array name="EnergyDrinks">
+        <item>Red Bull</item>
+        <item>Monster</item>
+        <item>Cult</item>
+        <item>Faxe Booster</item>
+        <item>Burn</item>
+        <item>Rockstar</item>
+    </string-array>
+
+    <string-array name="Other">
+        <item>Caff pill</item>
+        <item>pre-workout</item>
+        <item>Chocolate</item>
+        <item>Gum</item>
+        <item>IceCream</item>
+    </string-array>
 </resources>
