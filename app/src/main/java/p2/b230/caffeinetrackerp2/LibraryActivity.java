@@ -18,6 +18,8 @@ public class LibraryActivity extends AppCompatActivity {
     private Spinner energyDrinks;
     private Spinner other;
     ArrayAdapter<String> favoritesAdapter;
+    ArrayAdapter<CharSequence> otherAdapter;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -218,8 +220,7 @@ public class LibraryActivity extends AppCompatActivity {
     {
         other = (Spinner) findViewById(R.id.library_others);
 
-        ArrayAdapter<CharSequence> otherAdapter =
-                ArrayAdapter.createFromResource(this, R.array.Other,
+        otherAdapter = ArrayAdapter.createFromResource(this, R.array.Other,
                         android.R.layout.simple_spinner_item);
 
         otherAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
@@ -231,13 +232,34 @@ public class LibraryActivity extends AppCompatActivity {
     {
         other = (Spinner) findViewById(R.id.library_others);
 
+
         other.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
-
+            boolean[] itemSelectedBool = new boolean[otherAdapter.getCount()];
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
             {
                 String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
-                favoritesAdapter.add(itemSelectedInSpinner);
+
+                if(itemSelectedBool[pos])
+                    itemSelectedBool[pos] = false;
+                else
+                    itemSelectedBool[pos] = true;
+
+                if(favoritesAdapter.getCount() == 0)
+                    favoritesAdapter.add(itemSelectedInSpinner);
+
+                for(int i = 0; i < favoritesAdapter.getCount(); i++)
+                {
+                    if(!favoritesAdapter.getItem(i).toString().equals(itemSelectedInSpinner) && itemSelectedBool[pos])
+                    {
+                        favoritesAdapter.add(itemSelectedInSpinner);
+                        break;
+                    }else
+                    {
+                        favoritesAdapter.remove(itemSelectedInSpinner);
+                    }
+                }
+
             }
 
             public void onNothingSelected(AdapterView<?> adapterView)
