@@ -2,14 +2,18 @@ package p2.b230.caffeinetrackerp2;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter
 {
@@ -17,6 +21,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
+    private final Set<Pair<Long, Long>> mCheckedItems = new HashSet<>();
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader,
                                  HashMap<String, List<String>> listChildData) {
@@ -48,10 +53,29 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
             convertView = infalInflater.inflate(R.layout.activity_list_item, null);
         }
 
-        TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.list_check_box);
+        final CheckBox cb = (CheckBox) convertView.findViewById(R.id.list_check_box);
+        // add tag to remember groupId/childId
+        final Pair<Long, Long> tag = new Pair<Long, Long>(
+                getGroupId(groupPosition),
+                getChildId(groupPosition, childPosition));
+        cb.setTag(tag);
+        // set checked if groupId/childId in checked items
+        cb.setChecked(mCheckedItems.contains(tag));
+        // set OnClickListener to handle checked switches
+        cb.setOnClickListener(new View.OnClickListener() {
 
-        txtListChild.setText(childText);
+            public void onClick(View v) {
+                final CheckBox cb = (CheckBox) v;
+                final Pair<Long, Long> tag = (Pair<Long, Long>) v.getTag();
+                if (cb.isChecked()) {
+                    mCheckedItems.add(tag);
+                } else {
+                    mCheckedItems.remove(tag);
+                }
+            }
+        });
+
+        cb.setText(childText);
         return convertView;
     }
 
