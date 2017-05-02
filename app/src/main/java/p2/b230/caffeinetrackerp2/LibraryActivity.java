@@ -7,28 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class LibraryActivity extends AppCompatActivity {
 
-    private Spinner favorites;
-    private Spinner soda;
-    private Spinner coffee;
-    private Spinner tea;
-    private Spinner energyDrinks;
-    private Spinner other;
-    ArrayAdapter<String> favoritesAdapter;
-    ArrayAdapter<CharSequence> otherAdapter;
-
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expandableListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
-        setFavoritesSpinner();
-        addListenerToFavoritesSpinner();
-        setSodaSpinner();
-        addListenerToSodaSpinner();
     }
 
     @Override
@@ -36,18 +33,113 @@ public class LibraryActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
-        setFavoritesSpinner();
-        addListenerToFavoritesSpinner();
-        setSodaSpinner();
-        addListenerToSodaSpinner();
-        setCoffeeSpinner();
-        addListenerToCoffeeSpinner();
-        setTeaSpinner();
-        addListenerToTeaSpinner();
-        setEnergyDrinksSpinner();
-        addListenerToEnergyDrinksSpinner();
-        setOtherDrinksSpinner();
-        addListenerToOtherSpinner();
+        // get the listview
+        expandableListView = (ExpandableListView) findViewById(R.id.expand_view);
+
+        // preparing list data
+        prepareListData();
+
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+
+        // setting list adapter
+        expandableListView.setAdapter(listAdapter);
+
+        // Listview Group click listener
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v,
+                                        int groupPosition, long id) {
+                // Toast.makeText(getApplicationContext(),
+                // "Group Clicked " + listDataHeader.get(groupPosition),
+                // Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+        // Listview Group expanded listener
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                Toast.makeText(getApplicationContext(),
+                        listDataHeader.get(groupPosition) + " Expanded",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Listview Group collasped listener
+        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                Toast.makeText(getApplicationContext(),
+                        listDataHeader.get(groupPosition) + " Collapsed",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        // Listview on child click listener
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                // TODO Auto-generated method stub
+                Toast.makeText(
+                        getApplicationContext(),
+                        listDataHeader.get(groupPosition)
+                                + " : "
+                                + listDataChild.get(
+                                listDataHeader.get(groupPosition)).get(
+                                childPosition), Toast.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+        });
+    }
+
+    /*
+     * Preparing the list data
+     */
+    private void prepareListData() {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+
+        // Adding child data
+        listDataHeader.add("Top 250");
+        listDataHeader.add("Now Showing");
+        listDataHeader.add("Coming Soon..");
+
+        // Adding child data
+        List<String> top250 = new ArrayList<String>();
+        top250.add("The Shawshank Redemption");
+        top250.add("The Godfather");
+        top250.add("The Godfather: Part II");
+        top250.add("Pulp Fiction");
+        top250.add("The Good, the Bad and the Ugly");
+        top250.add("The Dark Knight");
+        top250.add("12 Angry Men");
+
+        List<String> nowShowing = new ArrayList<String>();
+        nowShowing.add("The Conjuring");
+        nowShowing.add("Despicable Me 2");
+        nowShowing.add("Turbo");
+        nowShowing.add("Grown Ups 2");
+        nowShowing.add("Red 2");
+        nowShowing.add("The Wolverine");
+
+        List<String> comingSoon = new ArrayList<>();
+        comingSoon.add("2 Guns");
+        comingSoon.add("The Smurfs 2");
+        comingSoon.add("The Spectacular Now");
+        comingSoon.add("The Canyons");
+        comingSoon.add("Europa Report");
+
+        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), nowShowing);
+        listDataChild.put(listDataHeader.get(2), comingSoon);
     }
 
     public void makeCostum(View view)
@@ -61,211 +153,5 @@ public class LibraryActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setFavoritesSpinner()
-    {
-        favorites = (Spinner)findViewById(R.id.library_favorites);
-        favoritesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
-        favoritesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        favorites.setAdapter(favoritesAdapter);
-    }
 
-    public void addListenerToFavoritesSpinner()
-    {
-        favorites = (Spinner) findViewById(R.id.library_favorites);
-
-        favorites.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
-            {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-    }
-
-    void setSodaSpinner()
-    {
-        soda = (Spinner) findViewById(R.id.library_sodas);
-
-        ArrayAdapter<CharSequence> sodaAdapter =
-                ArrayAdapter.createFromResource(this, R.array.Soda,
-                        android.R.layout.simple_spinner_item);
-
-        sodaAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
-
-        soda.setAdapter(sodaAdapter);
-    }
-
-    void addListenerToSodaSpinner()
-    {
-        soda = (Spinner) findViewById(R.id.library_sodas);
-
-        soda.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
-            {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-    }
-
-    void setCoffeeSpinner()
-    {
-        coffee = (Spinner) findViewById(R.id.library_coffees);
-
-        ArrayAdapter<CharSequence> coffeeAdapter =
-                ArrayAdapter.createFromResource(this, R.array.Coffee,
-                        android.R.layout.simple_spinner_item);
-
-        coffeeAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
-
-        coffee.setAdapter(coffeeAdapter);
-    }
-
-    void addListenerToCoffeeSpinner()
-    {
-        coffee = (Spinner) findViewById(R.id.library_coffees);
-
-        coffee.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
-            {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-    }
-
-    void setTeaSpinner()
-    {
-        tea = (Spinner) findViewById(R.id.library_teas);
-
-        ArrayAdapter<CharSequence> teaAdapter =
-                ArrayAdapter.createFromResource(this, R.array.Tea,
-                        android.R.layout.simple_spinner_item);
-
-        teaAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
-
-        tea.setAdapter(teaAdapter);
-    }
-
-    void addListenerToTeaSpinner()
-    {
-        tea = (Spinner) findViewById(R.id.library_teas);
-
-        tea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
-            {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-    }
-
-    void setEnergyDrinksSpinner()
-    {
-        energyDrinks = (Spinner) findViewById(R.id.library_energydrinks);
-
-        ArrayAdapter<CharSequence> energyDrinksAdapter =
-                ArrayAdapter.createFromResource(this, R.array.EnergyDrinks,
-                        android.R.layout.simple_spinner_item);
-
-        energyDrinksAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
-
-        energyDrinks.setAdapter(energyDrinksAdapter);
-    }
-
-    void addListenerToEnergyDrinksSpinner()
-    {
-        energyDrinks = (Spinner) findViewById(R.id.library_energydrinks);
-
-        energyDrinks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
-            {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-    }
-
-    void setOtherDrinksSpinner()
-    {
-        other = (Spinner) findViewById(R.id.library_others);
-
-        otherAdapter = ArrayAdapter.createFromResource(this, R.array.Other,
-                        android.R.layout.simple_spinner_item);
-
-        otherAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
-
-        other.setAdapter(otherAdapter);
-    }
-
-    void addListenerToOtherSpinner()
-    {
-        other = (Spinner) findViewById(R.id.library_others);
-
-
-        other.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            boolean[] itemSelectedBool = new boolean[otherAdapter.getCount()];
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
-            {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
-
-                if(itemSelectedBool[pos])
-                    itemSelectedBool[pos] = false;
-                else
-                    itemSelectedBool[pos] = true;
-
-                if(favoritesAdapter.getCount() == 0)
-                    favoritesAdapter.add(itemSelectedInSpinner);
-
-                for(int i = 0; i < favoritesAdapter.getCount(); i++)
-                {
-                    if(!favoritesAdapter.getItem(i).toString().equals(itemSelectedInSpinner) && itemSelectedBool[pos])
-                    {
-                        favoritesAdapter.add(itemSelectedInSpinner);
-                        break;
-                    }else
-                    {
-                        favoritesAdapter.remove(itemSelectedInSpinner);
-                    }
-                }
-
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-    }
 }
