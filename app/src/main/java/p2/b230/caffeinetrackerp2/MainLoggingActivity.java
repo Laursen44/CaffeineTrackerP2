@@ -50,11 +50,11 @@ public class MainLoggingActivity extends AppCompatActivity {
     {
         caffeineSubstanceChooser = (Spinner) findViewById(R.id.caffeine_source_choose);
 
-        ArrayAdapter<CharSequence> caffeineSubstanceChooserAdapter =
-                ArrayAdapter.createFromResource(this, R.array.caffeine_chooser,
-                        android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> caffeineSubstanceChooserAdapter = new
+                ArrayAdapter(this,
+                        android.R.layout.simple_list_item_single_choice, ExpandableListAdapter.favList);
 
-        caffeineSubstanceChooserAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
+        caffeineSubstanceChooserAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
 
         caffeineSubstanceChooser.setAdapter(caffeineSubstanceChooserAdapter);
     }
@@ -65,9 +65,9 @@ public class MainLoggingActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> caffeineAmountChooserAdapter =
                 ArrayAdapter.createFromResource(this, R.array.caffeine_amount,
-                        android.R.layout.simple_spinner_item);
+                        android.R.layout.simple_list_item_single_choice);
 
-        caffeineAmountChooserAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice);
+        caffeineAmountChooserAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
 
         caffeineAmountChooser.setAdapter(caffeineAmountChooserAdapter);
     }

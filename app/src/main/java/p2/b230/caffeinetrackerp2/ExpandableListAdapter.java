@@ -10,6 +10,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +23,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
     private final Set<Pair<Long, Long>> mCheckedItems = new HashSet<>();
+    public static ArrayList<String> favList = new ArrayList<>();
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader,
                                  HashMap<String, List<String>> listChildData) {
@@ -69,8 +71,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
                 final Pair<Long, Long> tag = (Pair<Long, Long>) v.getTag();
                 if (cb.isChecked()) {
                     mCheckedItems.add(tag);
+                    favList.add(childText);
                 } else {
                     mCheckedItems.remove(tag);
+                    favList.remove(childText);
                 }
             }
         });
@@ -126,5 +130,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public static ArrayList<String> getFavList() {
+        return favList;
     }
 }

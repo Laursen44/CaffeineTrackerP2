@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Spinner;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +19,8 @@ public class LibraryActivity extends AppCompatActivity {
     ExpandableListView expandableListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    private Spinner favoriteSpinner;
+    ArrayAdapter<CharSequence> favoriteSpinnerAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,24 @@ public class LibraryActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
+        expandableLibrary();
+        addItemsToFavoriteSpinner();
+        addListenerToFavoriteSpinner();
+    }
+
+    public void makeCostum(View view)
+    {
+
+    }
+
+    public void backToLogging(View view)
+    {
+        Intent intent = new Intent(LibraryActivity.this, MainLoggingActivity.class);
+        startActivity(intent);
+    }
+
+    public void expandableLibrary()
+    {
         // get the listview
         expandableListView = (ExpandableListView) findViewById(R.id.expand_view);
 
@@ -70,16 +94,13 @@ public class LibraryActivity extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
 
-
                 return false;
             }
         });
+
     }
 
-    /*
-     * Preparing the list data
-     */
-    private void prepareListData() {
+    public void prepareListData() {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
@@ -99,16 +120,16 @@ public class LibraryActivity extends AppCompatActivity {
         Soda.add("Pepsi");
 
         List<String> Coffee = new ArrayList<String>();
-        Coffee.add("Black");
-        Coffee.add("Instant 2 tsp");
+        Coffee.add("Black Coffee");
+        Coffee.add("Instant Coffee");
         Coffee.add("Espresso");
         Coffee.add("Cappuccino");
         Coffee.add("Macchiato");
 
         List<String> Tea = new ArrayList<String>();
-        Tea.add("Green");
-        Tea.add("Black");
-        Tea.add("Light");
+        Tea.add("Green Tea");
+        Tea.add("Black Tea");
+        Tea.add("Light Tea");
         Tea.add("Cammellia");
         Tea.add("Chamomile");
 
@@ -122,10 +143,9 @@ public class LibraryActivity extends AppCompatActivity {
 
         List<String> Other = new ArrayList<String>();
         Other.add("Caff pill");
-        Other.add("pre-workout");
-        Other.add("Chocolate");
+        Other.add("Pre-Workout");
+        Other.add("Chocolate Dark");
         Other.add("Gum");
-        Other.add("IceCream");
 
         listDataChild.put(listDataHeader.get(0), Soda); // Header, Child data
         listDataChild.put(listDataHeader.get(1), Coffee);
@@ -134,16 +154,32 @@ public class LibraryActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(4), Other);
     }
 
-    public void makeCostum(View view)
+    public void addItemsToFavoriteSpinner()
     {
+        favoriteSpinner = (Spinner) findViewById(R.id.favorites_spinner_library);
 
+        favoriteSpinnerAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice,
+                    new ArrayList<String>());
+        favoriteSpinner.setAdapter(favoriteSpinnerAdapter);
     }
 
-    public void backToLogging(View view)
+    public void addListenerToFavoriteSpinner()
     {
-        Intent intent = new Intent(LibraryActivity.this, MainLoggingActivity.class);
-        startActivity(intent);
-    }
+        favoriteSpinner = (Spinner) findViewById(R.id.favorites_spinner_library);
 
+        favoriteSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
+            {
+                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
+    }
 
 }
