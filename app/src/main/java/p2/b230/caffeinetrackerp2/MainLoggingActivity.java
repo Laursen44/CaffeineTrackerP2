@@ -8,10 +8,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 public class MainLoggingActivity extends AppCompatActivity {
 
     private Spinner caffeineSubstanceChooser;
     private Spinner caffeineAmountChooser;
+    public static float caffeineContent;
+    String itemSelectedInAmount;
+    String itemSelectedInSubstance;
+    CaffeineDatabase cafData;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -22,6 +31,7 @@ public class MainLoggingActivity extends AppCompatActivity {
         addItemsToCaffeineAmountChooserSpinner();
         addListenerToCaffeineSubstanceChooserSpinner();
         addListenerToCaffeineAmountChooserSpinner();
+        cafData = new CaffeineDatabase();
     }
 
     protected void onPause() {
@@ -81,7 +91,7 @@ public class MainLoggingActivity extends AppCompatActivity {
 
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
             {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
+                itemSelectedInSubstance = parent.getItemAtPosition(pos).toString();
             }
 
             public void onNothingSelected(AdapterView<?> adapterView)
@@ -100,7 +110,8 @@ public class MainLoggingActivity extends AppCompatActivity {
 
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l)
             {
-                String itemSelectedInSpinner = parent.getItemAtPosition(pos).toString();
+                itemSelectedInAmount = parent.getItemAtPosition(pos).toString();
+
             }
 
             public void onNothingSelected(AdapterView<?> adapterView)
@@ -108,5 +119,27 @@ public class MainLoggingActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+
+    public void addCaffToChart(View view)
+    {
+        caffeineContent = cafData.returnCaffeineContent(itemSelectedInSubstance, itemSelectedInAmount);
+        int hourOfDay;
+        int minuteOfDay;
+        boolean doChartdata = true;
+        Calendar now = Calendar.getInstance(TimeZone.getTimeZone("GMT+2"));
+        hourOfDay = now.get(Calendar.HOUR_OF_DAY);
+        minuteOfDay = now.get(Calendar.MINUTE);
+
+        Intent intent = new Intent(this, StatisticActivity.class);
+
+        intent.putExtra("CaffeineContent", caffeineContent);
+        intent.putExtra("Hour", hourOfDay);
+        intent.putExtra("Minute", minuteOfDay);
+        intent.putExtra("SetChartData", doChartdata);
+
+        startActivity(intent);
     }
 }

@@ -18,9 +18,9 @@ public class CaffeineDatabase
         return result;
     }
 
-    private int amountFromString(String amount)
+    private float amountFromString(String amount)
     {
-        int givenAmount = 0;
+        float givenAmount = 0;
         switch(amount)
         {
             case "25ml":
@@ -55,6 +55,12 @@ public class CaffeineDatabase
     private float caffeineDensityFromString(String caffeineType)
     {
         float caffeinePerUnit = 0;
+
+        if(caffeineType == null)
+        {
+            caffeinePerUnit = 0f;
+            return caffeinePerUnit;
+        }
         switch(caffeineType)
         {
             case "Coca Cola":
