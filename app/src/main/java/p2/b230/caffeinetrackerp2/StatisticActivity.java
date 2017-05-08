@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static p2.b230.caffeinetrackerp2.R.id.graph;
+import static p2.b230.caffeinetrackerp2.R.id.line1;
 
 
 public class StatisticActivity extends AppCompatActivity {
@@ -103,6 +104,7 @@ public class StatisticActivity extends AppCompatActivity {
         list1.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         lineData = new LineData(list1);
+
         active = false;
 
         return lineData;
@@ -111,16 +113,28 @@ public class StatisticActivity extends AppCompatActivity {
     public void makeGraph(LineData linedata)
     {
         desc = new Description();
+        desc.setTextSize(14f);
+        desc.setTextColor(Color.rgb(57,23,9));
         desc.setText("Caffeine in blood");
+
+
         lineChart = (LineChart) findViewById(R.id.graph);
-        lineChart.setBackgroundColor(Color.rgb(255,248,219));
+        lineChart.setBackgroundColor(Color.rgb(216,181,136));
         lineChart.setDescription(desc);
-        lineChart.setGridBackgroundColor(Color.rgb(216,181,136));
+        lineChart.setGridBackgroundColor(0);
+        list1.setCircleColor(Color.rgb(57,23,9));
+        list1.setFillColor(Color.rgb(176,64,64));
+        list1.setColors(Color.rgb(57,23,9));
+
+        list1.setCircleColorHole(Color.rgb(57,23,9));
+        lineChart.getXAxis().setTextColor(Color.rgb(57,23,9));
+        lineChart.getXAxis().setTextSize(15f);
+        lineChart.getAxisLeft().setTextColor(Color.rgb(57,23,9));
+        lineChart.getAxisLeft().setTextSize(15f);
 
         //Puts the X axis in the bottom of the chart
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
         YAxis leftAxis = lineChart.getAxisLeft();
         YAxis rightAxis = lineChart.getAxisRight();
 
@@ -136,6 +150,8 @@ public class StatisticActivity extends AppCompatActivity {
         lineChart.setVisibleXRangeMinimum(0f);
         lineChart.setVisibleXRangeMaximum(100f);
     }
+
+
 
     public float map (float value, float start1, float stop1, float start2, float stop2)
     {

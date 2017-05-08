@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@mipmap/backgroundimagebrown"
     tools:context="p2.b230.caffeinetrackerp2.MainLoggingActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -16,6 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/title_activity_library"
+            android:textColor="#f1e7c7"
+            android:textSize="30dp"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -32,7 +35,7 @@
             android:id="@+id/divider"
             android:layout_width="354dp"
             android:layout_height="12dp"
-            app:srcCompat="@color/black_overlay"
+            app:srcCompat="@mipmap/divider"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,14 +46,16 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintVertical_bias="0.144"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+
+            />
 
         <ImageButton
             android:id="@+id/libary_button_costum"
             android:onClick="makeCostum"
             android:layout_width="224dp"
             android:layout_height="52dp"
-            app:srcCompat="@android:drawable/ic_input_add"
+            app:srcCompat="@mipmap/addcustombtn"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginLeft="8dp"
@@ -62,14 +67,18 @@
             app:layout_constraintHorizontal_bias="0.944"
             app:layout_constraintVertical_bias="1.0"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            android:background="#0000"
+            />
 
         <ImageButton
             android:id="@+id/libary_button_back"
             android:onClick="backToLogging"
             android:layout_width="88dp"
             android:layout_height="52dp"
-            app:srcCompat="@android:drawable/ic_input_delete"
+            app:srcCompat="@mipmap/checkmarkbutton"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -78,10 +87,14 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="1.0"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            android:background="#0000"
+            />
 
         <Spinner
             android:id="@+id/favorites_spinner_library"
@@ -95,7 +108,10 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintVertical_bias="0.2"
+            android:background="#0000"
+            />
+
 
         <ExpandableListView
             android:id="@+id/expand_view"
@@ -113,7 +129,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.719"
             tools:layout_editor_absoluteY="150dp"
-            app:layout_constraintHorizontal_bias="0.529" />
+            app:layout_constraintHorizontal_bias="0.529"
+            android:background="#0000"
+            />
 
     </android.support.constraint.ConstraintLayout>
 

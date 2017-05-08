@@ -48,6 +48,7 @@ public class MainLoggingActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(MainLoggingActivity.this, StatisticActivity.class);
         startActivity(intent);
+
     }
 
     public void libraryActivity(View view)
