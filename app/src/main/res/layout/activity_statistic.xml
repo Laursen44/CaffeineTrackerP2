@@ -105,34 +105,26 @@
 
         <ImageButton
             android:id="@+id/HealthButton"
-            android:layout_width="300dp"
-            android:layout_height="33dp"
+            android:layout_width="82dp"
+            android:layout_height="118dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:background="#0000"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.899"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.93"
-            app:srcCompat="@mipmap/addcustombtn" />
+            app:layout_constraintVertical_bias="0.333"
+            app:srcCompat="@mipmap/notification"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            tools:layout_editor_absoluteX="268dp" />
 
-        <ImageView
-            android:id="@+id/notification"
-            android:layout_width="44dp"
-            android:layout_height="46dp"
-            app:srcCompat="@android:drawable/star_big_on"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintHorizontal_bias="0.975"
-            app:layout_constraintVertical_bias="0.918" />
+
 
 
     </android.support.constraint.ConstraintLayout>

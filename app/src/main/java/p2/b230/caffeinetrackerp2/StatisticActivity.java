@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class StatisticActivity extends AppCompatActivity {
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private FrameLayout relativeLayout;
+    private ImageButton closebttn;
 
 
 
@@ -75,14 +77,15 @@ public class StatisticActivity extends AppCompatActivity {
         if (line != null)
             makeGraph(line);
 
+
+
         if (caffeineContent > 300)
         {
 
-        }
-
-            HealthButton = (ImageButton) findViewById(R.id.HealthButton);
             HealthButton = (ImageButton) findViewById(R.id.HealthButton);
             relativeLayout = (FrameLayout) findViewById(R.id.statistics);
+
+            HealthButton.setVisibility(View.VISIBLE);
 
             HealthButton.setOnClickListener(new OnClickListener() {
                 @Override
@@ -93,11 +96,22 @@ public class StatisticActivity extends AppCompatActivity {
                     popupWindow = new PopupWindow(container, 990, 1050, true);
                     popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 89);
 
-
+                    container.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                    });
                 }
+
             });
 
         }
+
+        }
+
+
 
     public void changeActivityLEFT(View view)
     {

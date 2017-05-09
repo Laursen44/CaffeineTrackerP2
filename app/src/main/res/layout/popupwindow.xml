@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/healthwindow"
+
+    >
+
 
     <TextView
 
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.86"
+        android:layout_weight="0.88"
         android:background="#fff8db"
-        android:textSize="25dp"
         android:text="Be aware, your current caffeine level could potentially have a bad effect on your health"
         android:textColor="#000000"
+        android:textSize="25dp"
 
         />
+
+
+
+
 </LinearLayout>
