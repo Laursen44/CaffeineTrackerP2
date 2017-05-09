@@ -1,5 +1,4 @@
 package p2.b230.caffeinetrackerp2;
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,9 +62,9 @@ public class MainLoggingActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> caffeineSubstanceChooserAdapter = new
                 ArrayAdapter(this,
-                        android.R.layout.simple_list_item_single_choice, ExpandableListAdapter.favList);
+                        android.R.layout.simple_spinner_dropdown_item, ExpandableListAdapter.favList);
 
-        caffeineSubstanceChooserAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        caffeineSubstanceChooserAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         caffeineSubstanceChooser.setAdapter(caffeineSubstanceChooserAdapter);
     }
@@ -76,9 +75,9 @@ public class MainLoggingActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> caffeineAmountChooserAdapter =
                 ArrayAdapter.createFromResource(this, R.array.caffeine_amount,
-                        android.R.layout.simple_list_item_single_choice);
+                        android.R.layout.simple_spinner_dropdown_item);
 
-        caffeineAmountChooserAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        caffeineAmountChooserAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         caffeineAmountChooser.setAdapter(caffeineAmountChooserAdapter);
     }

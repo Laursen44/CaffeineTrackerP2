@@ -7,7 +7,15 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -22,6 +30,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import static p2.b230.caffeinetrackerp2.R.id.HealthButton;
 import static p2.b230.caffeinetrackerp2.R.id.graph;
 import static p2.b230.caffeinetrackerp2.R.id.line1;
 
@@ -38,10 +47,19 @@ public class StatisticActivity extends AppCompatActivity {
     LineDataSet list1;
     LineData lineData;
 
+    private ImageButton HealthButton;
+    private PopupWindow popupWindow;
+    private LayoutInflater layoutInflater;
+    private FrameLayout relativeLayout;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
+
 
     }
 
@@ -54,9 +72,32 @@ public class StatisticActivity extends AppCompatActivity {
         extractBundleInfo(bundle);
 
         LineData line = setLineData(caffeineContent, hour, minute, doChartData);
-        if(line != null)
+        if (line != null)
             makeGraph(line);
-    }
+
+        if (caffeineContent > 300)
+        {
+
+        }
+
+            HealthButton = (ImageButton) findViewById(R.id.HealthButton);
+            HealthButton = (ImageButton) findViewById(R.id.HealthButton);
+            relativeLayout = (FrameLayout) findViewById(R.id.statistics);
+
+            HealthButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popupwindow, null);
+
+                    popupWindow = new PopupWindow(container, 990, 1050, true);
+                    popupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 89);
+
+
+                }
+            });
+
+        }
 
     public void changeActivityLEFT(View view)
     {
@@ -119,14 +160,15 @@ public class StatisticActivity extends AppCompatActivity {
 
 
         lineChart = (LineChart) findViewById(R.id.graph);
+        list1.setDrawCircles(false);
         lineChart.setBackgroundColor(Color.rgb(216,181,136));
         lineChart.setDescription(desc);
         lineChart.setGridBackgroundColor(0);
-        list1.setCircleColor(Color.rgb(57,23,9));
+        //list1.setCircleColor(Color.rgb(57,23,9));
+        //list1.setCircleColorHole(Color.rgb(57,23,9));
         list1.setFillColor(Color.rgb(176,64,64));
         list1.setColors(Color.rgb(57,23,9));
-
-        list1.setCircleColorHole(Color.rgb(57,23,9));
+        list1.setLineWidth(3f);
         lineChart.getXAxis().setTextColor(Color.rgb(57,23,9));
         lineChart.getXAxis().setTextSize(15f);
         lineChart.getAxisLeft().setTextColor(Color.rgb(57,23,9));
@@ -166,5 +208,6 @@ public class StatisticActivity extends AppCompatActivity {
         minute = bundle.getInt("Minute");
         doChartData = bundle.getBoolean("SetChartData");
     }
+
 
 }

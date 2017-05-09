@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/backgroundimagebrown"
-    tools:context="p2.b230.caffeinetrackerp2.MainLoggingActivity">
+    tools:context="p2.b230.caffeinetrackerp2.MainLoggingActivity"
+    android:id="@+id/statistics"
+    >
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -97,11 +99,44 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.641"
+            app:layout_constraintVertical_bias="0.567"
             app:layout_constraintHorizontal_bias="0.428"
-
             />
 
+        <ImageButton
+            android:id="@+id/HealthButton"
+            android:layout_width="300dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.93"
+            app:srcCompat="@mipmap/addcustombtn" />
+
+        <ImageView
+            android:id="@+id/notification"
+            android:layout_width="44dp"
+            android:layout_height="46dp"
+            app:srcCompat="@android:drawable/star_big_on"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.975"
+            app:layout_constraintVertical_bias="0.918" />
+
+
     </android.support.constraint.ConstraintLayout>
+
+
 
 </FrameLayout>
