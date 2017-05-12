@@ -111,37 +111,46 @@
 
                     <ImageButton
                         android:id="@+id/day_left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
+                        android:background="#0000"
                         android:onClick="changeDayLeft"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.027"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
+
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
                         app:srcCompat="@mipmap/arrowleftbrown" />
 
                     <ImageButton
                         android:id="@+id/day_right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
+                        android:background="#0000"
                         android:onClick="changeDayRight"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.972"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
-                        app:srcCompat="@mipmap/arrowrightbrown" />
+                        app:srcCompat="@mipmap/arrowrightbrown"
+
+                        />
 
                     <TextView
                         android:id="@+id/day_textview"
@@ -177,8 +186,8 @@
 
                     <ImageButton
                         android:id="@+id/week_right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginLeft="8dp"
@@ -186,7 +195,10 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
+                        android:background="#0000"
                         android:onClick="changeWeekRight"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.972"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -216,15 +228,18 @@
 
                     <ImageButton
                         android:id="@+id/week_left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:background="#0000"
                         android:onClick="changeWeekLeft"
+                        android:padding="4dp"
+                        android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.027"
                         app:layout_constraintLeft_toLeftOf="parent"
