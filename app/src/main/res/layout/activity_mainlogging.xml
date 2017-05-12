@@ -230,6 +230,22 @@
             android:textStyle="bold"
             />
 
+        <Button
+            android:id="@+id/dev_button"
+            android:layout_width="64dp"
+            android:layout_height="51dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Dev"
+            android:onClick="goToDev"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.973"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.22" />
 
 
     </android.support.constraint.ConstraintLayout>

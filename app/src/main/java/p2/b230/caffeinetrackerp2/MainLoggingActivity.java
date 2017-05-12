@@ -16,10 +16,10 @@ public class MainLoggingActivity extends AppCompatActivity {
 
     private Spinner caffeineSubstanceChooser;
     private Spinner caffeineAmountChooser;
-    public static float caffeineContent;
     String itemSelectedInAmount;
     String itemSelectedInSubstance;
     CaffeineDatabase cafData;
+    EntryDatabaseHandler databaseHandler;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -31,6 +31,7 @@ public class MainLoggingActivity extends AppCompatActivity {
         addListenerToCaffeineSubstanceChooserSpinner();
         addListenerToCaffeineAmountChooserSpinner();
         cafData = new CaffeineDatabase();
+        databaseHandler = new EntryDatabaseHandler(this, null, null, 3);
     }
 
     protected void onPause() {
@@ -125,21 +126,26 @@ public class MainLoggingActivity extends AppCompatActivity {
 
     public void addCaffToChart(View view)
     {
-        caffeineContent = cafData.returnCaffeineContent(itemSelectedInSubstance, itemSelectedInAmount);
-        int hourOfDay;
-        int minuteOfDay;
-        boolean doChartdata = true;
         Calendar now = Calendar.getInstance(TimeZone.getTimeZone("GMT+2"));
-        hourOfDay = now.get(Calendar.HOUR_OF_DAY);
-        minuteOfDay = now.get(Calendar.MINUTE);
+
+        int day = now.get(Calendar.DAY_OF_YEAR);
+        int week = now.get(Calendar.WEEK_OF_YEAR);
+        int dayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+        int hourOfDay= now.get(Calendar.HOUR_OF_DAY);
+        int minuteOfDay= now.get(Calendar.MINUTE);
+        int caffeineContent = (int)cafData.returnCaffeineContent(itemSelectedInSubstance, itemSelectedInAmount);
+
+        CaffeineEntry caffeineEntry = new CaffeineEntry(day, week, dayOfWeek, hourOfDay, minuteOfDay, caffeineContent);
+
+        databaseHandler.addEntry(caffeineEntry);
 
         Intent intent = new Intent(this, StatisticActivity.class);
+        startActivity(intent);
+    }
 
-        intent.putExtra("CaffeineContent", caffeineContent);
-        intent.putExtra("Hour", hourOfDay);
-        intent.putExtra("Minute", minuteOfDay);
-        intent.putExtra("SetChartData", doChartdata);
-
+    public void goToDev(View view)
+    {
+        Intent intent = new Intent(MainLoggingActivity.this, EditInterviewData.class);
         startActivity(intent);
     }
 }
